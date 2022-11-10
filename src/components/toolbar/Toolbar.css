@@ -1,0 +1,11 @@
+.toolbar__container {
+  width: 100%;
+  height: 150px;
+  background-color: aquamarine;
+}
+
+.toolbar__itemContainer {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+}
