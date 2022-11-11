@@ -10,6 +10,7 @@ registerLicense(
 function App() {
   return (
     <div className="App">
+      <div style={{ height: "100px" }}>BUILT with React</div>
       <Navbar />
       <Toolbar />
     </div>

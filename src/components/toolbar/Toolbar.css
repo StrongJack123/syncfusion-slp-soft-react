@@ -9,3 +9,15 @@
   flex-direction: column;
   justify-self: center;
 }
+
+.template__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.template__item > span {
+  width: 15px;
+  height: 15px;
+}
