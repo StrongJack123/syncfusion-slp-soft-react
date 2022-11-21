@@ -1,6 +1,10 @@
 import { enableRipple } from "@syncfusion/ej2-base";
 import { MenuComponent } from "@syncfusion/ej2-react-navigations";
 import { Component } from "react";
+import ModalExample from "../modals/modalExample";
+import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
+import StartNewproject from "../modals/startNewproject";
+
 enableRipple(true);
 class Navbar extends Component {
   constructor() {
@@ -488,15 +492,84 @@ class Navbar extends Component {
         ],
       },
     ];
+    this.state = {
+      eventTrace: "",
+      startProject: false,
+    };
+    this.beforeOpen = this.beforeOpen.bind(this);
+    this.beforeClose = this.beforeClose.bind(this);
+    this.select = this.select.bind(this);
+    this.onOpen = this.onOpen.bind(this);
+    this.onClose = this.onClose.bind(this);
+    this.btnClick = this.btnClick.bind(this);
+  }
+
+  beforeOpen(args) {
+    this.updateEventLog(args);
+  }
+  beforeClose(args) {
+    this.updateEventLog(args);
+  }
+  onClose(args) {
+    this.updateEventLog(args);
+  }
+  onOpen(args) {
+    this.updateEventLog(args);
+  }
+  select(args) {
+    if (args.element.textContent === "Start a Project") {
+      console.log("yes");
+      this.setState({ startProject: true });
+      console.log(this.state.startProject);
+    }
+    this.updateEventLog(args);
+    console.log("SELECT" + args.element.textContent);
+  }
+  updateEventLog(args) {
+    this.setState({
+      eventTrace:
+        this.state.eventTrace +
+        args.element.textContent +
+        " Event triggered. <br />",
+    });
+  }
+  btnClick() {
+    this.setState({ eventTrace: "" });
   }
   render() {
     return (
-      <ul style={{ backgroundColor: "#0BBB56" }}>
-        <MenuComponent
-          items={this.menuItems}
-          style={{ backgroundColor: "#0BBB56", color: "white" }}
+      <div>
+        <ul style={{ backgroundColor: "#0BBB56" }}>
+          <MenuComponent
+            items={this.menuItems}
+            style={{ backgroundColor: "#0BBB56", color: "white" }}
+            beforeOpen={this.beforeOpen}
+            beforeClose={this.beforeClose}
+            onClose={this.onClose}
+            onOpen={this.onOpen}
+            select={this.select}
+          />
+        </ul>
+        <div className="property-section">
+          <table id="propertyTable" title="Event trace">
+            <tbody>
+              <th>Event trace:-</th>
+              <tr>
+                <td
+                  dangerouslySetInnerHTML={{ __html: this.state.eventTrace }}
+                />
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {this.state.startProject && <ModalExample />}
+        <ButtonComponent
+          id="clear"
+          cssClass="e-small"
+          content="Clear"
+          onClick={this.btnClick}
         />
-      </ul>
+      </div>
     );
   }
 }

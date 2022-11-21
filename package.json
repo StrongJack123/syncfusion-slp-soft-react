@@ -14,6 +14,7 @@
     "@syncfusion/ej2-inputs": "^20.3.56",
     "@syncfusion/ej2-lists": "^20.3.56",
     "@syncfusion/ej2-react-base": "^20.3.56",
+    "@syncfusion/ej2-react-buttons": "^20.3.56",
     "@syncfusion/ej2-react-filemanager": "^20.3.56",
     "@syncfusion/ej2-react-navigations": "^20.3.52",
     "@testing-library/jest-dom": "^5.16.5",
